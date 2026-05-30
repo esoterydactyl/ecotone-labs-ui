@@ -35,10 +35,10 @@ add_library(EcotoneLabsUI STATIC)
 add_library(EcotoneLabs::UI ALIAS EcotoneLabsUI)
 
 target_sources(EcotoneLabsUI PRIVATE
-    src/CordycepsLookAndFeel.cpp
+    src/EcotoneLookAndFeel.cpp
 )
 
-# PUBLIC: consumers inherit the include path and find CordycepsLookAndFeel.h
+# PUBLIC: consumers inherit the include path and find EcotoneLookAndFeel.h
 # with no changes to their #include directives.
 target_include_directories(EcotoneLabsUI
     PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}/include"

@@ -4,7 +4,7 @@ Shared JUCE design system — color tokens, embedded fonts, and LookAndFeel over
 
 ## What's in here
 
-- **17 color tokens** (`bg`, `surface`, `cordy`, `textHi`, `hairline`, …) as static `juce::Colour` methods
+- **17 color tokens** (`bg`, `surface`, `accent`, `textHi`, `hairline`, …) as static `juce::Colour` methods
 - **3 embedded fonts**: JetBrains Mono Regular, JetBrains Mono Medium, Instrument Serif Italic
 - **Font helpers**: `serifFont(size)`, `monoFont(size, medium)` — static, lazy-loaded
 - **JUCE LookAndFeel_V4 overrides**: buttons, sliders (linear + rotary), tabs, toggle buttons, scrollbars, dialogs
@@ -17,7 +17,7 @@ include(FetchContent)
 FetchContent_Declare(
     EcotoneLabsUI
     GIT_REPOSITORY https://github.com/esoterydactyl/ecotone-labs-ui.git
-    GIT_TAG        v1.0.0   # ← bump this line to update
+    GIT_TAG        v2.0.0   # ← bump this line to update
     GIT_SHALLOW    TRUE
 )
 FetchContent_MakeAvailable(EcotoneLabsUI)
@@ -28,17 +28,17 @@ target_link_libraries(MyApp PRIVATE EcotoneLabsUI)
 Then in any source file:
 
 ```cpp
-#include "CordycepsLookAndFeel.h"
+#include "EcotoneLookAndFeel.h"
 
 // Color tokens
-g.setColour(CordycepsLookAndFeel::cordy());
+g.setColour(EcotoneLookAndFeel::accent());
 
 // Fonts
-g.setFont(CordycepsLookAndFeel::serifFont(20.0f));
-g.setFont(CordycepsLookAndFeel::monoFont(11.0f, /*medium=*/true));
+g.setFont(EcotoneLookAndFeel::serifFont(20.0f));
+g.setFont(EcotoneLookAndFeel::monoFont(11.0f, /*medium=*/true));
 
 // Apply as the app LookAndFeel
-CordycepsLookAndFeel laf;
+EcotoneLookAndFeel laf;
 juce::LookAndFeel::setDefaultLookAndFeel(&laf);
 ```
 

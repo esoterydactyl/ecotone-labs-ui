@@ -1,10 +1,10 @@
-#include "CordycepsLookAndFeel.h"
+#include "EcotoneLookAndFeel.h"
 #include <EcotoneLabsUIFonts.h>
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Constructor
 
-CordycepsLookAndFeel::CordycepsLookAndFeel()
+EcotoneLookAndFeel::EcotoneLookAndFeel()
 {
     // ── Load bundled fonts ────────────────────────────────────────────────────
     monoRegular = juce::Typeface::createSystemTypefaceFor(
@@ -25,7 +25,7 @@ CordycepsLookAndFeel::CordycepsLookAndFeel()
     setColour(juce::Slider::textBoxTextColourId,        textHi());
     setColour(juce::Slider::textBoxBackgroundColourId,  juce::Colours::transparentBlack);
     setColour(juce::Slider::textBoxOutlineColourId,     juce::Colours::transparentBlack);
-    setColour(juce::Slider::textBoxHighlightColourId,   cordy().withAlpha(0.4f));
+    setColour(juce::Slider::textBoxHighlightColourId,   accent().withAlpha(0.4f));
 
     // ── Label colours ─────────────────────────────────────────────────────────
     setColour(juce::Label::textColourId,                textMid());
@@ -36,9 +36,9 @@ CordycepsLookAndFeel::CordycepsLookAndFeel()
     setColour(juce::TextEditor::backgroundColourId,      bgWarm());
     setColour(juce::TextEditor::outlineColourId,         hairline());
     setColour(juce::TextEditor::focusedOutlineColourId,  hairlineHi());
-    setColour(juce::TextEditor::highlightColourId,       cordy().withAlpha(0.3f));
+    setColour(juce::TextEditor::highlightColourId,       accent().withAlpha(0.3f));
     setColour(juce::TextEditor::highlightedTextColourId, textHi());
-    setColour(juce::CaretComponent::caretColourId,       cordy());
+    setColour(juce::CaretComponent::caretColourId,       accent());
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────
     setColour(juce::ScrollBar::thumbColourId,            hairlineHi());
@@ -59,7 +59,7 @@ CordycepsLookAndFeel::CordycepsLookAndFeel()
     setColour(juce::DirectoryContentsDisplayComponent::textColourId,
               textMid());
     setColour(juce::DirectoryContentsDisplayComponent::highlightColourId,
-              cordy().withAlpha(0.18f));
+              accent().withAlpha(0.18f));
     setColour(juce::DirectoryContentsDisplayComponent::highlightedTextColourId,
               textHi());
 
@@ -92,7 +92,7 @@ CordycepsLookAndFeel::CordycepsLookAndFeel()
 // ──────────────────────────────────────────────────────────────────────────────
 // Font helpers
 
-juce::Font CordycepsLookAndFeel::serifFont(float size)
+juce::Font EcotoneLookAndFeel::serifFont(float size)
 {
     static juce::Typeface::Ptr tf = juce::Typeface::createSystemTypefaceFor(
         EcotoneLabsUIFonts::InstrumentSerifItalic_ttf,
@@ -102,7 +102,7 @@ juce::Font CordycepsLookAndFeel::serifFont(float size)
     return juce::Font(juce::FontOptions().withHeight(size).withStyle("Italic"));
 }
 
-juce::Font CordycepsLookAndFeel::monoFont(float size, bool medium)
+juce::Font EcotoneLookAndFeel::monoFont(float size, bool medium)
 {
     static juce::Typeface::Ptr regular = juce::Typeface::createSystemTypefaceFor(
         EcotoneLabsUIFonts::JetBrainsMonoRegular_ttf,
@@ -116,7 +116,7 @@ juce::Font CordycepsLookAndFeel::monoFont(float size, bool medium)
     return juce::Font(juce::FontOptions(size));
 }
 
-juce::Font CordycepsLookAndFeel::makeMonoFont(float size, bool medium) const
+juce::Font EcotoneLookAndFeel::makeMonoFont(float size, bool medium) const
 {
     auto tf = medium ? monoMedium : monoRegular;
     if (tf != nullptr)
@@ -125,7 +125,7 @@ juce::Font CordycepsLookAndFeel::makeMonoFont(float size, bool medium) const
     return juce::Font(juce::FontOptions(size));
 }
 
-juce::Font CordycepsLookAndFeel::makeSerifFont(float size) const
+juce::Font EcotoneLookAndFeel::makeSerifFont(float size) const
 {
     if (serifItalic != nullptr)
         return juce::Font(serifItalic).withHeight(size);
@@ -135,7 +135,7 @@ juce::Font CordycepsLookAndFeel::makeSerifFont(float size) const
 // ──────────────────────────────────────────────────────────────────────────────
 // Buttons
 
-void CordycepsLookAndFeel::drawButtonBackground(
+void EcotoneLookAndFeel::drawButtonBackground(
     juce::Graphics& g, juce::Button& button,
     const juce::Colour& /*backgroundColour*/,
     bool highlighted, bool down)
@@ -194,7 +194,7 @@ void CordycepsLookAndFeel::drawButtonBackground(
     g.drawRect(bounds, 1.0f);
 }
 
-void CordycepsLookAndFeel::drawButtonText(
+void EcotoneLookAndFeel::drawButtonText(
     juce::Graphics& g, juce::TextButton& button,
     bool highlighted, bool /*down*/)
 {
@@ -219,7 +219,7 @@ void CordycepsLookAndFeel::drawButtonText(
                      juce::Justification::centred, 1);
 }
 
-juce::Font CordycepsLookAndFeel::getTextButtonFont(juce::TextButton&, int buttonHeight)
+juce::Font EcotoneLookAndFeel::getTextButtonFont(juce::TextButton&, int buttonHeight)
 {
     return makeMonoFont(juce::jmin(15.75f, (float)buttonHeight * 0.9f), true);
 }
@@ -227,7 +227,7 @@ juce::Font CordycepsLookAndFeel::getTextButtonFont(juce::TextButton&, int button
 // ──────────────────────────────────────────────────────────────────────────────
 // Sliders
 
-void CordycepsLookAndFeel::drawLinearSlider(
+void EcotoneLookAndFeel::drawLinearSlider(
     juce::Graphics& g, int x, int y, int width, int height,
     float sliderPos, float /*minSliderPos*/, float /*maxSliderPos*/,
     juce::Slider::SliderStyle style, juce::Slider& slider)
@@ -246,11 +246,11 @@ void CordycepsLookAndFeel::drawLinearSlider(
     g.setColour(hairline());
     g.fillRect((float)x, trackY, (float)width, trackH);
 
-    // Filled portion — cordy
+    // Filled portion — accent
     float fillW = sliderPos - (float)x;
     if (fillW > 0.0f)
     {
-        g.setColour(cordy());
+        g.setColour(accent());
         g.fillRect((float)x, trackY, fillW, trackH);
     }
 
@@ -268,14 +268,14 @@ void CordycepsLookAndFeel::drawLinearSlider(
 
     g.setColour(textHi());
     g.fillPath(diamond, xform);
-    g.setColour(cordy());
+    g.setColour(accent());
     g.strokePath(diamond, juce::PathStrokeType(1.0f), xform);
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Tabs
 
-void CordycepsLookAndFeel::drawTabButton(
+void EcotoneLookAndFeel::drawTabButton(
     juce::TabBarButton& button, juce::Graphics& g,
     bool isMouseOver, bool /*isMouseDown*/)
 {
@@ -290,7 +290,7 @@ void CordycepsLookAndFeel::drawTabButton(
 
     if (isFront)
     {
-        g.setColour(cordy());
+        g.setColour(accent());
         g.fillRect(bounds.removeFromBottom(2.0f));
     }
 
@@ -306,7 +306,7 @@ void CordycepsLookAndFeel::drawTabButton(
                      juce::Justification::centred, 1);
 }
 
-void CordycepsLookAndFeel::drawTabAreaBehindFrontButton(
+void EcotoneLookAndFeel::drawTabAreaBehindFrontButton(
     juce::TabbedButtonBar& bar, juce::Graphics& g, int w, int h)
 {
     g.setColour(hairline());
@@ -320,7 +320,7 @@ void CordycepsLookAndFeel::drawTabAreaBehindFrontButton(
 // ──────────────────────────────────────────────────────────────────────────────
 // Toggle button
 
-void CordycepsLookAndFeel::drawToggleButton(
+void EcotoneLookAndFeel::drawToggleButton(
     juce::Graphics& g, juce::ToggleButton& button,
     bool highlighted, bool /*down*/)
 {
@@ -332,9 +332,9 @@ void CordycepsLookAndFeel::drawToggleButton(
     juce::Rectangle<float> pill(2.0f, ty, pillW, pillH);
 
     // Track — sharp corners
-    g.setColour(on ? cordy().withAlpha(0.4f) : bgWarm());
+    g.setColour(on ? accent().withAlpha(0.4f) : bgWarm());
     g.fillRect(pill);
-    g.setColour(on ? cordy() : hairline());
+    g.setColour(on ? accent() : hairline());
     g.drawRect(pill, 1.0f);
 
     // Knob (small diamond)
@@ -365,7 +365,7 @@ void CordycepsLookAndFeel::drawToggleButton(
 // ──────────────────────────────────────────────────────────────────────────────
 // Rotary slider (pitch knob — stays circular per spec)
 
-void CordycepsLookAndFeel::drawRotarySlider(
+void EcotoneLookAndFeel::drawRotarySlider(
     juce::Graphics& g, int x, int y, int width, int height,
     float sliderPos, float startAngle, float endAngle, juce::Slider&)
 {
@@ -400,16 +400,16 @@ void CordycepsLookAndFeel::drawRotarySlider(
         value.addArc(cx - trackR, cy - trackR, trackR * 2.0f, trackR * 2.0f,
                      juce::jmin(midAngle, curAngle),
                      juce::jmax(midAngle, curAngle), true);
-        g.setColour(cordy());
+        g.setColour(accent());
         g.strokePath(value, juce::PathStrokeType(arcW, juce::PathStrokeType::curved,
                                                    juce::PathStrokeType::rounded));
     }
 
-    // Indicator dot — small cordy circle
+    // Indicator dot — small accent circle
     float angle = curAngle - juce::MathConstants<float>::halfPi;
     float dotR  = 1.8f;
     float dotD  = trackR - arcW * 0.5f - 1.0f;
-    g.setColour(cordy());
+    g.setColour(accent());
     g.fillEllipse(cx + dotD * std::cos(angle) - dotR,
                   cy + dotD * std::sin(angle) - dotR,
                   dotR * 2.0f, dotR * 2.0f);

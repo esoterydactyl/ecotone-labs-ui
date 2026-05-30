@@ -1,10 +1,10 @@
 #pragma once
 #include <juce_gui_basics/juce_gui_basics.h>
 
-class CordycepsLookAndFeel : public juce::LookAndFeel_V4
+class EcotoneLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
-    CordycepsLookAndFeel();
+    EcotoneLookAndFeel();
 
     // ── Design token colours (used by components that need them) ──────────────
     static juce::Colour bg()         { return juce::Colour(0xff0E0C0F); }
@@ -18,8 +18,8 @@ public:
     static juce::Colour textMid()    { return juce::Colour(0xff8F8A82); }
     static juce::Colour textDim()    { return juce::Colour(0xff5A554E); }
     static juce::Colour textGhost()  { return juce::Colour(0xff3C3833); }
-    static juce::Colour cordy()      { return juce::Colour(0xffD67A3F); }
-    static juce::Colour cordy2()     { return juce::Colour(0xffB05A28); }
+    static juce::Colour accent()      { return juce::Colour(0xffD67A3F); }
+    static juce::Colour accent2()     { return juce::Colour(0xffB05A28); }
     static juce::Colour alive()      { return juce::Colour(0xffA6C155); }
     static juce::Colour aliveDim()   { return juce::Colour(0xff6E8434); }
     static juce::Colour danger()     { return juce::Colour(0xffC44C3F); }
